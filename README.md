@@ -42,25 +42,18 @@
 
 
 3. From `$FIO_ROOT`
-   `make` : builds static libraries and executables
-   `make shared` : builds shared libraries
-   `make python` : builds `fio_py.so`
+    * `make` : builds static libraries and executables
+    * `make shared` : builds shared libraries
+    * `make python` : builds `fio_py.so`
 
 
 4. Run `make install` from `$FIO_ROOT`.  This will install:
-   
-   Executables in     `$FIO_INSTALL_DIR/bin/`
-
-   Libraries in       `$FIO_INSTALL_DIR/lib/`
-
-   Headers in         `$FIO_INSTALL_DIR/include/`
-   
-   Fortran modules in `$FIO_INSTALL_DIR/include/`
+    * Executables in     `$FIO_INSTALL_DIR/bin/
+    * Libraries in       `$FIO_INSTALL_DIR/lib/`
+    * Headers in         `$FIO_INSTALL_DIR/include/`
+    * Fortran modules in `$FIO_INSTALL_DIR/include/`
 
 5. To run the code add the following paths to your bashrc:
-
-    PATH:             `$FIO_INSTALL_DIR/bin`
-    
-    LD_LIBRARY_PATH:  `$FIO_INSTALL_DIR/lib`
-    
-    PYTHONPATH:       `$FIO_INSTALL_DIR/lib`
+     * PATH:             `$FIO_INSTALL_DIR/bin`
+     * LD_LIBRARY_PATH:  `$FIO_INSTALL_DIR/lib`
+     * PYTHONPATH:       `$FIO_INSTALL_DIR/lib`
