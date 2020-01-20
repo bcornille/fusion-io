@@ -1,18 +1,18 @@
 1. Set the environment variables FIO_ROOT, FIO_ARCH, FIO_INSTALL_DIR, and PYTHON
 
-* FIO_ROOT should be set to the directory containing this README
+  * FIO_ROOT should be set to the directory containing this README
   file
 
-* FIO_ARCH should be set to a string describing the build
+  * FIO_ARCH should be set to a string describing the build
   environment (for example "OSX")
 
-* FIO_INSTALL_DIR should be set to the location where files will be
+  * FIO_INSTALL_DIR should be set to the location where files will be
   installed.  Files will be installed under
   $FIO_INSTALL_DIR/include, $FIO_INSTALL_DIR/lib, and
   $FIO_INSTALL_DIR/bin.
 
-* The variable PYTHON in the make.inc file should be set to the python executable.
-  For example 'python' or 'python3'
+  * The variable PYTHON in the make.inc file should be set to the python executable.
+    For example 'python' or 'python3'
 
 
 2. Create and edit the file $FIO_ROOT/install/make.inc.$FIO_ARCH
@@ -23,9 +23,9 @@
    You will need an installation of HDF5, MPI, and LAPACK
 
    * If compiling on Portal:
-     CentOS 6:
+     * CentOS 6:
        ACML_HOME should also be changed to: /usr/pppl/acml/5.3.1
-     CentOS 7:
+     * CentOS 7:
        Use make.inc.centos7, ACML is replaced by lapack
 
    * If compiling on eddy:
@@ -42,7 +42,7 @@
        3) intel/17.0/64/17.0.5.239
    
    * If compiling on cori:
-     Before compiling do 'module unload darshan' and 'module load texlive'.
+     Before compiling do `module unload darshan` and `module load texlive`.
      Furthermore, load an anaconda module based on Python 3.
 
 
