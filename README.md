@@ -1,14 +1,13 @@
 1. Set the environment variables FIO_ROOT, FIO_ARCH, FIO_INSTALL_DIR, and PYTHON
-  * FIO_ROOT should be set to the directory containing this README
+    * FIO_ROOT should be set to the directory containing this README
   file
-  * FIO_ARCH should be set to a string describing the build
+    * FIO_ARCH should be set to a string describing the build
   environment (for example "OSX")
-  * FIO_INSTALL_DIR should be set to the location where files will be
+    * FIO_INSTALL_DIR should be set to the location where files will be
   installed.  Files will be installed under
   $FIO_INSTALL_DIR/include, $FIO_INSTALL_DIR/lib, and
   $FIO_INSTALL_DIR/bin.
-
-  * PYTHON should be set to the python executable. for examplye python3 (python2 is 
+    * PYTHON should be set to the python executable. for examplye python3 (python2 is 
   close to getting deprecated)
 
 
@@ -19,12 +18,12 @@
 
    You will need an installation of HDF5, MPI, and LAPACK
 
-   * If compiling on Portal:
-     * CentOS 6:
+    * If compiling on Portal:
+      * CentOS 6:
        ACML_HOME should also be changed to: /usr/pppl/acml/5.3.1
-     * CentOS 7:
+      * CentOS 7:
        Use make.inc.centos7, ACML is replaced by lapack
-   * If compiling on eddy:
+    * If compiling on eddy:
      The INCLUDE path might be incorrectly set (missing an -I 
      in front of the first entry. export INCLUDE=-I$INCLUDE should fix it.
 
@@ -33,9 +32,10 @@
      'module load anaconda' and create/activate a conda environment before
      compiling fusion-io.
      Recommended modules to compile fusion-io:
+```
        1) hdf5/intel-17.0/openmpi-1.10.2/1.10.0   4) openmpi/intel-17.0/3.0.0/64
        2) intel-mkl/2017.4/5/64                   5) anaconda/2019.10
-       3) intel/17.0/64/17.0.5.239
+       3) intel/17.0/64/17.0.5.239```
    * If compiling on cori:
      Before compiling do `module unload darshan` and `module load texlive`.
      Furthermore, load an anaconda module based on Python 3.
