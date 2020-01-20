@@ -1,35 +1,35 @@
-1. Set the environment variables FIO_ROOT, FIO_ARCH, FIO_INSTALL_DIR, and PYTHON
-    * FIO_ROOT should be set to the directory containing this README
+1. Set the environment variables `FIO_ROOT`, `FIO_ARCH`, `FIO_INSTALL_DIR`, and `PYTHON`
+    * `FIO_ROOT` should be set to the directory containing this `README`
   file
-    * FIO_ARCH should be set to a string describing the build
-  environment (for example "OSX")
-    * FIO_INSTALL_DIR should be set to the location where files will be
+    * `FIO_ARCH` should be set to a string describing the build
+  environment (for example `"OSX"`)
+    * `FIO_INSTALL_DIR` should be set to the location where files will be
   installed.  Files will be installed under
-  $FIO_INSTALL_DIR/include, $FIO_INSTALL_DIR/lib, and
-  $FIO_INSTALL_DIR/bin.
-    * PYTHON should be set to the python executable. for examplye python3 (python2 is 
+  `$FIO_INSTALL_DIR/include`, `$FIO_INSTALL_DIR/lib`, and
+  `$FIO_INSTALL_DIR/bin`.
+    * `PYTHON` should be set to the python executable. for examplye `python3` (`python2` is 
   close to getting deprecated)
 
 
-2. Create and edit the file $FIO_ROOT/install/make.inc.$FIO_ARCH
+2. Create and edit the file `$FIO_ROOT/install/make.inc.$FIO_ARCH`
    to specify the proper compilers and library paths.  An example
    using the gnu compilers can be found in
-   $FIO_ROOT/install/make.inc.OSX .
+   `$FIO_ROOT/install/make.inc.OSX` .
 
    You will need an installation of HDF5, MPI, and LAPACK
 
     * If compiling on Portal:
       * CentOS 6:
-       ACML_HOME should also be changed to: /usr/pppl/acml/5.3.1
+       `ACML_HOME` should also be changed to: `/usr/pppl/acml/5.3.1`
       * CentOS 7:
-       Use make.inc.centos7, ACML is replaced by lapack
+       Use `make.inc.centos7`, ACML is replaced by lapack
     * If compiling on eddy:
-     The INCLUDE path might be incorrectly set (missing an -I 
-     in front of the first entry. export INCLUDE=-I$INCLUDE should fix it.
+     The `INCLUDE` path might be incorrectly set (missing an `-I` 
+     in front of the first entry. `export INCLUDE=-I$INCLUDE` should fix it.
 
      The standard python version on eddy is 2.7. As of Jan 2020 it is recommended
      to work with Python 3 only. In order to get the python version right, do
-     'module load anaconda' and create/activate a conda environment before
+     `module load anaconda` and create/activate a conda environment before
      compiling fusion-io.
      Recommended modules to compile fusion-io:
 ```
@@ -41,20 +41,20 @@
      Furthermore, load an anaconda module based on Python 3.
 
 
-3. From $FIO_ROOT
-   make : builds static libraries and executables
-   make shared : builds shared libraries
-   make python : builds fio_py.so
+3. From `$FIO_ROOT`
+   `make` : builds static libraries and executables
+   `make shared` : builds shared libraries
+   `make python` : builds `fio_py.so`
 
 
-4. Run "make install" from $FIO_ROOT.  This will install:
+4. Run `make install` from `$FIO_ROOT`.  This will install:
    
-   Executables in     $FIO_INSTALL_DIR/bin/
-   Libraries in       $FIO_INSTALL_DIR/lib/
-   Headers in         $FIO_INSTALL_DIR/include/
-   Fortran modules in $FIO_INSTALL_DIR/include/
+   Executables in     `$FIO_INSTALL_DIR/bin/`
+   Libraries in       `$FIO_INSTALL_DIR/lib/`
+   Headers in         `$FIO_INSTALL_DIR/include/`
+   Fortran modules in `$FIO_INSTALL_DIR/include/`
 
 5. To run the code add the following paths to your bashrc:
-    PATH:             $FIO_INSTALL_DIR/bin
-    LD_LIBRARY_PATH:  $FIO_INSTALL_DIR/lib
-    PYTHONPATH:       $FIO_INSTALL_DIR/lib
+    PATH:             `$FIO_INSTALL_DIR/bin`
+    LD_LIBRARY_PATH:  `$FIO_INSTALL_DIR/lib`
+    PYTHONPATH:       `$FIO_INSTALL_DIR/lib`
