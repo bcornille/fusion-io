@@ -50,11 +50,17 @@
 4. Run `make install` from `$FIO_ROOT`.  This will install:
    
    Executables in     `$FIO_INSTALL_DIR/bin/`
+
    Libraries in       `$FIO_INSTALL_DIR/lib/`
+
    Headers in         `$FIO_INSTALL_DIR/include/`
+   
    Fortran modules in `$FIO_INSTALL_DIR/include/`
 
 5. To run the code add the following paths to your bashrc:
+
     PATH:             `$FIO_INSTALL_DIR/bin`
+    
     LD_LIBRARY_PATH:  `$FIO_INSTALL_DIR/lib`
+    
     PYTHONPATH:       `$FIO_INSTALL_DIR/lib`
