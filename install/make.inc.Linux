@@ -1,0 +1,21 @@
+CC = cc
+CXX = mpicxx
+CFLAGS = -Wall -fPIC -O2
+
+F90 = mpif90
+F90FLAGS = -Wall -fdefault-real-8 -fimplicit-none -fPIC
+
+PYTHON = python3
+
+ARCH = ar cr
+
+LDD = $(CXX) -shared
+LD = $(CXX) 
+LDFLAGS = -fPIC
+
+INCLUDE = -I/usr/include/hdf5/openmpi
+
+LIBS = -L/opt/local/lib/gcc5 -lgfortran
+
+HDF5_LIBS = -lhdf5_serial -lz
+LAPACK = -llapack

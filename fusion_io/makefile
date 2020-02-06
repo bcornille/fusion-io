@@ -32,6 +32,7 @@ OBJS = 	interpolate.o \
 	fio_operations.o \
 	compound_field.o \
 	isosurface.o \
+	nimrod_source.o \
 	m3dc1_source.o \
 	m3dc1_field.o \
 	mars_source.o \

@@ -6,7 +6,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-int nimrod_fio_init_(char*, int)
+int nimrod_fio_init_(const char*, int);
 #ifdef __cplusplus
 }
 #endif
@@ -14,9 +14,9 @@ int nimrod_fio_init_(char*, int)
 struct nimrod_search_hint {
   double ixy[2];
   int iblk;
-}
+};
 
-class nimrod_source final : public fio_source {
+class nimrod_source : public fio_source {
 public:
   int open(const char*);
   int close();
@@ -29,6 +29,6 @@ public:
   { return sizeof(nimrod_search_hint); }
   int allocate_search_hint(void** s);
   int deallocate_search_hint(void** s);
-}
+};
 
 #endif // NIMROD_SOURCE_H

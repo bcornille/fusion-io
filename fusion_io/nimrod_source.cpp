@@ -2,8 +2,8 @@
 
 int nimrod_source::open(const char* filename)
 {
-  int len_filename
-  if(!nimrod_fio_init(filename, len_filename))
+  int len_filename;
+  if(!nimrod_fio_init_(filename, len_filename))
     return FIO_FILE_ERROR;
 
   return FIO_SUCCESS;
@@ -45,7 +45,7 @@ int nimrod_source::allocate_search_hint(void** s)
   return FIO_SUCCESS;
 }
 
-int nimrod_source::deallcate_search_hint(void** s)
+int nimrod_source::deallocate_search_hint(void** s)
 {
   delete (nimrod_search_hint*)(*s);
   return FIO_SUCCESS;
