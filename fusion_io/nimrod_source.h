@@ -6,8 +6,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-int nimrod_fio_init_(const char*, int);
-int nimrod_fio_dealloc_();
+void nimrod_fio_init_(const char*, int, int*);
+void nimrod_fio_dealloc_(int*);
 #ifdef __cplusplus
 }
 #endif

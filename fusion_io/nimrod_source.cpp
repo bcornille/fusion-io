@@ -1,9 +1,14 @@
+#include <cstring>
+
 #include "nimrod_source.h"
 
 int nimrod_source::open(const char* filename)
 {
-  int len_filename;
-  if(!nimrod_fio_init_(filename, len_filename))
+  int len_filename = strlen(filename);
+  int ierr;
+
+  nimrod_fio_init_(filename, len_filename, &ierr);
+  if(!ierr)
     return FIO_FILE_ERROR;
 
   return FIO_SUCCESS;
@@ -11,7 +16,10 @@ int nimrod_source::open(const char* filename)
 
 int nimrod_source::close()
 {
-  if(!nimrod_fio_dealloc_())
+  int ierr;
+
+  nimrod_fio_dealloc_(&ierr);
+  if(!ierr)
     return FIO_FILE_ERROR;
 
   return FIO_SUCCESS;

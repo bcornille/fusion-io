@@ -13,7 +13,7 @@ LDD = $(CXX) -shared
 LD = $(CXX) 
 LDFLAGS = -fPIC
 
-INCLUDE = -I/usr/include/hdf5/openmpi
+INCLUDE = -I/usr/include/hdf5/serial
 
 LIBS = -L/opt/local/lib/gcc5 -lgfortran
 
