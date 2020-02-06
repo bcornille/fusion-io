@@ -11,6 +11,9 @@ int nimrod_source::open(const char* filename)
 
 int nimrod_source::close()
 {
+  if(!nimrod_fio_dealloc_())
+    return FIO_FILE_ERROR;
+
   return FIO_SUCCESS;
 }
 
