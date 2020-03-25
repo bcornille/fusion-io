@@ -5,7 +5,7 @@
 int nimrod_source::open(const char* filename)
 {
   int len_filename = strlen(filename);
-  int ierr;
+  int ierr = 0;
 
   nimrod_fio_init_(filename, len_filename, &ierr);
   if(!ierr)
@@ -16,7 +16,7 @@ int nimrod_source::open(const char* filename)
 
 int nimrod_source::close()
 {
-  int ierr;
+  int ierr = 0;
 
   nimrod_fio_dealloc_(&ierr);
   if(!ierr)

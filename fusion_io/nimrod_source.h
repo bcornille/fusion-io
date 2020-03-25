@@ -6,14 +6,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void nimrod_fio_init_(const char*, int, int*);
-void nimrod_fio_dealloc_(int*);
+void nimrod_fio_init(const char*, int, int);
+void nimrod_fio_dealloc(int);
 #ifdef __cplusplus
 }
 #endif
 
 struct nimrod_search_hint {
-  double ixy[2];
+  std::array<double, 2> ixy;
   int iblk;
 };
 

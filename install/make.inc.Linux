@@ -1,6 +1,6 @@
 CC = cc
 CXX = mpicxx
-CFLAGS = -Wall -fPIC -O2
+CFLAGS = -Wall -fPIC -O2 -std=c++11
 
 F90 = mpif90
 F90FLAGS = -Wall -fdefault-real-8 -fimplicit-none -fPIC
@@ -10,7 +10,7 @@ PYTHON = python3
 ARCH = ar cr
 
 LDD = $(CXX) -shared
-LD = $(CXX) 
+LD = $(CXX)
 LDFLAGS = -fPIC
 
 INCLUDE = -I/usr/include/hdf5/serial
