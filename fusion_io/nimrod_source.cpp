@@ -5,24 +5,20 @@
 int nimrod_source::open(const char* filename)
 {
   int len_filename = strlen(filename);
-  int ierr = 0;
+  int ierr = -1;
 
-  nimrod_fio_init_(filename, len_filename, &ierr);
-  if(!ierr)
-    return FIO_FILE_ERROR;
+  nimrod_fio_init(filename, len_filename, &ierr);
 
-  return FIO_SUCCESS;
+  return ierr;
 }
 
 int nimrod_source::close()
 {
-  int ierr = 0;
+  int ierr = -1;
 
-  nimrod_fio_dealloc_(&ierr);
-  if(!ierr)
-    return FIO_FILE_ERROR;
+  nimrod_fio_dealloc(&ierr);
 
-  return FIO_SUCCESS;
+  return ierr;
 }
 
 int nimrod_source::get_available_fields(fio_field_list* fields) const
