@@ -1,6 +1,6 @@
 #include <cstring>
 
-#include "nimrod_source.h"
+#include "fusion_io.h"
 
 int nimrod_source::open(const char* filename)
 {
@@ -43,7 +43,28 @@ int nimrod_source::get_field_options(fio_option_list* opt) const
 int nimrod_source::get_field(const field_type t, fio_field** f,
                              const fio_option_list* opt)
 {
-  return FIO_UNSUPPORTED;
+  int ierr = -1;
+  nimrod_scalar_field* nsf = nullptr;
+  switch(t) {
+  case FIO_DENSITY:
+    nsf = new nimrod_density_field();
+    ierr = nsf->load(opt);
+    *f = nsf;
+    return ierr;
+  case FIO_TEMPERATURE:
+    nsf = new nimrod_temperature_field();
+    ierr = nsf->load(opt);
+    *f = nsf;
+    return ierr;
+  case FIO_MAGNETIC_FIELD:
+    *f = new nimrod_magnetic_field();
+    return FIO_SUCCESS;
+  case FIO_ELECTRIC_FIELD:
+    *f = new nimrod_electric_field();
+    return FIO_SUCCESS;
+  default:
+    return FIO_UNSUPPORTED;
+  }
 }
 
 int nimrod_source::allocate_search_hint(void** s)
