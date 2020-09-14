@@ -18,24 +18,36 @@ include $(FIO_ROOT)/install/make.inc.$(FIO_ARCH)
 
 LIBS := -L$(FIO_ROOT)/fusion_io/_$(FIO_ARCH) -lfusionio \
 	-L$(FIO_ROOT)/m3dc1_lib/_$(FIO_ARCH) -lm3dc1 \
+	-Wl,--start-group -L$(NIMROD_ROOT)/nimfio -lnimfio \
+	-L$(NIMROD_ROOT)/nimcore -lnimblock -lnimbltype -lnimlocate -lnimmatrix -lnimiter -lnimpar \
+	-L$(NIMROD_ROOT)/nimlib -lnimmpi -lnimlib \
+	-L$(NIMROD_ROOT)/externals -llapack_dummy -lsslu_dummy -lslud_dummy -Wl,--end-group \
 	-Wl,-rpath,$(FIO_ROOT)/fusion_io/_$(FIO_ARCH) \
 	-Wl,-rpath,$(FIO_ROOT)/m3dc1_lib/_$(FIO_ARCH) \
+	-Wl,-rpath,$(NIMROD_ROOT)/nimfio \
 	$(HDF5_LIBS) $(LIBS)
+
+		# -Wl,-rpath,$(NIMROD_ROOT)/nimlib \
+		# -Wl,-rpath,$(NIMROD_ROOT)/nimcore \
+
+NIMROD_INCLUDE := -I$(NIMROD_ROOT)/nimfio -I$(NIMROD_ROOT)/nimcore  \
+	-I$(NIMROD_ROOT)/nimlib -I$(NIMROD_ROOT)/nimrod -I$(NIMROD_ROOT)/nimplot
 
 INCLUDE := -I$(FIO_ROOT)/fusion_io -I$(FIO_ROOT)/fusion_io/_$(FIO_ARCH) \
 	-I$(FIO_ROOT)/m3dc1_lib \
+	$(NIMROD_INCLUDE) \
 	$(HDF5_INCLUDE) $(INCLUDE)
 
 F90FLAGS := $(F90FLAGS) -DFORTRAN
 
-all : 
+all :
 
 examples : example example_c example_fortran example_push
 
 push : $(EXAMPLE_PUSH_BIN)
 
 example : example.o
-	$(CXX) $(LDFLAGS) $< $(LIBS) -o $@
+	$(CXX) $(LDFLAGS) $< $(NIMROD_INCLUDE) -I/usr/lib/openmpi/lib $(LIBS) -lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh  -o $@
 
 example_c : example_c.o
 	$(CXX) $(LDFLAGS) $< $(LIBS) -o $@
@@ -56,7 +68,7 @@ exmk :
 	cat $(FIO_ROOT)/install/common_footer.mk >> $@
 
 .PHONE: setup_data
-setup_data : 
+setup_data :
 	tar xvfz $(FIO_ROOT)/examples/data/mars/mars_data.tar.gz -C $(FIO_ROOT)/examples/data/mars
 	gunzip -c $(FIO_ROOT)/examples/data/gato/diagnostics.dat.gz > $(FIO_ROOT)/examples/data/gato/diagnostics.dat
 

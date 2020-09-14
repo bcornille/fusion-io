@@ -32,6 +32,11 @@ int fio_open_source(fio_source** src, const int type, const char* filename)
     ierr = (*src)->open(filename);
     break;
 
+  case(FIO_NIMROD_SOURCE):
+    *src = new nimrod_source();
+    ierr = (*src)->open(filename);
+    break;
+
   default:
     std::cerr << "Source type " << type << " unsupported." << std::endl;
     return FIO_UNSUPPORTED;
@@ -41,7 +46,7 @@ int fio_open_source(fio_source** src, const int type, const char* filename)
     delete(*src);
     return ierr;
   }
-  
+
   return FIO_SUCCESS;
 }
 
@@ -86,7 +91,7 @@ int fio_get_field_name(const field_type f, std::string* s)
   case(FIO_CURRENT_DENSITY):   *s = "current density";  break;
   case(FIO_DENSITY):           *s = "density";          break;
   case(FIO_ELECTRIC_FIELD):    *s = "electric field";   break;
-  case(FIO_FLUID_VELOCITY):    *s = "fluid velocity";   break; 
+  case(FIO_FLUID_VELOCITY):    *s = "fluid velocity";   break;
   case(FIO_MAGNETIC_FIELD):    *s = "magnetic field";   break;
   case(FIO_POLOIDAL_FLUX):     *s = "poloidal flux";    break;
   case(FIO_POLOIDAL_FLUX_NORM):*s = "normalized poloidal flux"; break;
@@ -95,13 +100,13 @@ int fio_get_field_name(const field_type f, std::string* s)
   case(FIO_TEMPERATURE):       *s = "temperature";      break;
   case(FIO_TOTAL_PRESSURE):    *s = "total pressure";   break;
   case(FIO_VECTOR_POTENTIAL):  *s = "vector potential"; break;
-  case(FIO_VELOCITY):          *s = "velocity";         break; 
+  case(FIO_VELOCITY):          *s = "velocity";         break;
   default:
     *s = "Unnamed field";
     return FIO_UNSUPPORTED;
   }
 
-  return FIO_SUCCESS; 
+  return FIO_SUCCESS;
 }
 
 int fio_get_option_name(const int opt, std::string* s)
@@ -117,5 +122,5 @@ int fio_get_option_name(const int opt, std::string* s)
     return FIO_UNSUPPORTED;
   }
 
-  return FIO_SUCCESS; 
+  return FIO_SUCCESS;
 }

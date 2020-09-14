@@ -4,21 +4,12 @@
 
 int nimrod_source::open(const char* filename)
 {
-  int len_filename = strlen(filename);
-  int ierr = -1;
-
-  nimrod_fio_init(filename, len_filename, &ierr);
-
-  return ierr;
+  return nimrod_fio_init(filename);
 }
 
 int nimrod_source::close()
 {
-  int ierr = -1;
-
-  nimrod_fio_dealloc(&ierr);
-
-  return ierr;
+  return nimrod_fio_dealloc();
 }
 
 int nimrod_source::get_available_fields(fio_field_list* fields) const
@@ -51,17 +42,17 @@ int nimrod_source::get_field(const field_type t, fio_field** f,
     ierr = nsf->load(opt);
     *f = nsf;
     return ierr;
-  case FIO_TEMPERATURE:
-    nsf = new nimrod_temperature_field();
-    ierr = nsf->load(opt);
-    *f = nsf;
-    return ierr;
-  case FIO_MAGNETIC_FIELD:
-    *f = new nimrod_magnetic_field();
-    return FIO_SUCCESS;
-  case FIO_ELECTRIC_FIELD:
-    *f = new nimrod_electric_field();
-    return FIO_SUCCESS;
+  // case FIO_TEMPERATURE:
+  //   nsf = new nimrod_temperature_field();
+  //   ierr = nsf->load(opt);
+  //   *f = nsf;
+  //   return ierr;
+  // case FIO_MAGNETIC_FIELD:
+  //   *f = new nimrod_magnetic_field();
+  //   return FIO_SUCCESS;
+  // case FIO_ELECTRIC_FIELD:
+  //   *f = new nimrod_electric_field();
+  //   return FIO_SUCCESS;
   default:
     return FIO_UNSUPPORTED;
   }

@@ -1,0 +1,108 @@
+&grid_input
+      gridshape='flux'
+      eqfile='fluxgrid.dat'
+      geom='tor'
+      mx=32
+      my=32
+      mxpie=1
+      pieflag='rblock'
+      nxbl=2
+      nybl=2
+      xmax=0.5
+      ymin=0.
+      xo=1.5
+      firstx=0.0
+      firsty=1.0
+      lphi=5
+      nlayers=8
+      lin_nmodes=1
+      lin_nmax=1 /
+&const_input
+      mi_input=1.6726219e-27
+      me_input=0.10938356e-31
+      kblz_input=8.6173325e-5
+      chrg_input=1.60217662e-19
+      mu0_input=1.2566370614e-6
+      c_input=2.99792458e8  /
+&physics_input
+      init_type="shear alf"
+      eq_flow='none'
+      advect='none'
+      advect='V only'
+      separate_pe=F
+      continuity='full'
+      continuity='fix profile'
+      continuity='none'
+      nx=1
+      ny=2
+      bamp=1.e-15
+      ndens=1.e18
+      elecd=5.453
+      iso_visc=5.453
+      dvac=50
+      dexp=25
+      ds_use='both'
+      ohms='mhd'
+      nonlinear=.true.
+      beta=0.0
+      lam0=1.e-10
+      be0=1.
+      thetab=0.
+      e_vertical=0
+      loop_volt=0  /
+&closure_input
+      p_model='aniso1'
+      k_pll=5.453e1
+      k_perp=5.453e-1
+      ohm_heat=F
+      visc_heat=F /
+&numerical_input
+      dtm=2e-6
+      dt_stop=1.e-4
+      n_dt_release=10
+      poly_degree=3,
+      dt_incr=1.07
+      dt_change_frac=0.1
+      ave_change_limit=6.e-3
+      fv_vdgv=0.54
+      fb_vxb=0.54
+      fp_vdgp=0.54
+      fn_vdgn=0.54
+      v_cfl=0.5
+      feta=1.
+      fvsc=1.
+      split_visc=.false.
+      mhd_si_iso=0
+      si_fac_mhd=1.1
+      si_fac_pres=1.1
+      si_fac_j0=1.
+      si_fac_nl=2
+      split_divb=.false.
+      divbd=5e4
+      kdivb_2_limit=1.e2
+      ngr=3
+      met_spl='iso'
+      tmax=1.e6
+      nstep=99000  /
+&solver_input
+      solver='slu_dsta'
+      tol=1.e-9
+      extrap_order=0
+      maxit=200 /
+&output_input
+      itflag=.false.
+      nhist=1
+      ihist=2
+      jhist=2
+      hist_binary=T
+      ndump=1000
+      dump_over = 0
+      dump_file='dump_gs.00000' /
+
+mstka1l: toroidal nonlinear computation related to tokamak discharges
+in mst.  run with nimuw3_4_9 at svn revision 1190.
+
+Fifth segment has nimeq fixed so that Jeq_phi is restored in the
+dump file.
+
+      v_cfl=0.75

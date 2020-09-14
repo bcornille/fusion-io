@@ -8,23 +8,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void nimrod_fio_get_time(const double, int*);
-void nimrod_fio_ndens_eval(const field_attribute, const double*, double*, int*);
-void nimrod_fio_ndens_eval_hint(const field_attribute, const double*, double*,
-                                nimrod_search_hint*, int*);
-void nimrod_fio_temp_eval(const field_attribute, const double*, double*, int*);
-void nimrod_fio_temp_eval_hint(const field_attribute, const double*, double*,
-                               nimrod_search_hint*, int*);
-void nimrod_fio_b_eval(const double*, double*, int*);
-void nimrod_fio_b_eval_hint(const double*, double*, nimrod_search_hint*, int*);
-void nimrod_fio_b_eval_deriv(const double*, double*, int*);
-void nimrod_fio_b_eval_deriv_hint(const double*, double*, nimrod_search_hint*,
-                                  int*);
-void nimrod_fio_e_eval(const double*, double*, int*);
-void nimrod_fio_e_eval_hint(const double*, double*, nimrod_search_hint*, int*);
-void nimrod_fio_e_eval_deriv(const double*, double*, int*);
-void nimrod_fio_e_eval_deriv_hint(const double*, double*, nimrod_search_hint*,
-                                  int*);
+int nimrod_fio_get_time(const double*);
+int nimrod_fio_ndens_eval(const field_attribute, const double*, double*);
+int nimrod_fio_ndens_eval_hint(const field_attribute, const double*, double*,
+                                nimrod_search_hint*);
+// int nimrod_fio_temp_eval(const field_attribute, const double*, double*);
+// int nimrod_fio_temp_eval_hint(const field_attribute, const double*, double*,
+//                                nimrod_search_hint*);
+// int nimrod_fio_b_eval(const double*, double*);
+// int nimrod_fio_b_eval_hint(const double*, double*, nimrod_search_hint*);
+// int nimrod_fio_b_eval_deriv(const double*, double*);
+// int nimrod_fio_b_eval_deriv_hint(const double*, double*, nimrod_search_hint*);
+// int nimrod_fio_e_eval(const double*, double*);
+// int nimrod_fio_e_eval_hint(const double*, double*, nimrod_search_hint*);
+// int nimrod_fio_e_eval_deriv(const double*, double*);
+// int nimrod_fio_e_eval_deriv_hint(const double*, double*, nimrod_search_hint*);
 #ifdef __cplusplus
 }
 #endif
@@ -51,26 +49,26 @@ class nimrod_density_field : public nimrod_scalar_field {
  public:
   virtual int eval(const double*, double*, void* = nullptr);
   virtual fio_field* clone() const { return new nimrod_density_field(*this); }
-};	
-
-class nimrod_temperature_field : public nimrod_scalar_field {
- public:
-  virtual int eval(const double*, double*, void* = nullptr);
-  virtual fio_field* clone() const { return new nimrod_temperature_field(*this); }
 };
 
-class nimrod_magnetic_field : public nimrod_vector_field {
- public:
-  virtual int eval(const double*, double*, void* = nullptr);
-  virtual int eval_deriv(const double*, double*, void* = nullptr);
-  virtual fio_field* clone() const { return new nimrod_magnetic_field(*this); }
-};
-
-class nimrod_electric_field : public nimrod_vector_field {
- public:
-  virtual int eval(const double*, double*, void* = nullptr);
-  virtual int eval_deriv(const double*, double*, void* = nullptr);
-  virtual fio_field* clone() const { return new nimrod_electric_field(*this); }
-};
+// class nimrod_temperature_field : public nimrod_scalar_field {
+//  public:
+//   virtual int eval(const double*, double*, void* = nullptr);
+//   virtual fio_field* clone() const { return new nimrod_temperature_field(*this); }
+// };
+//
+// class nimrod_magnetic_field : public nimrod_vector_field {
+//  public:
+//   virtual int eval(const double*, double*, void* = nullptr);
+//   virtual int eval_deriv(const double*, double*, void* = nullptr);
+//   virtual fio_field* clone() const { return new nimrod_magnetic_field(*this); }
+// };
+//
+// class nimrod_electric_field : public nimrod_vector_field {
+//  public:
+//   virtual int eval(const double*, double*, void* = nullptr);
+//   virtual int eval_deriv(const double*, double*, void* = nullptr);
+//   virtual fio_field* clone() const { return new nimrod_electric_field(*this); }
+// };
 
 #endif // NIMROD_FIELD_H

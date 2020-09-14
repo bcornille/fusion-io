@@ -33,12 +33,15 @@ int main(int argc, char* argv[])
   if(source_type == "m3dc1") {
     // Open an m3dc1 source
     result = fio_open_source(&src, FIO_M3DC1_SOURCE, "data/m3dc1/C1.h5");
-    
+
   } else if(source_type == "geqdsk") {
     result = fio_open_source(&src, FIO_GEQDSK_SOURCE, "data/geqdsk/g158115.04701");
 
   } else if(source_type == "gpec") {
     result = fio_open_source(&src, FIO_GPEC_SOURCE, "data/gpec");
+
+  } else if(source_type == "nimrod") {
+    result = fio_open_source(&src, FIO_NIMROD_SOURCE, "data/nimrod/dump_gs.00000");
 
   } else {
     std::cerr << "Error: source type " << argv[1]
@@ -79,22 +82,22 @@ int main(int argc, char* argv[])
     std::cerr << "Error opening density field" << std::endl;
     density = 0;
   };
-  
+
   int npts = 10;
   double R0 = 1.6;
-  double R1 = 2.1;
+  double R1 = 1.9;
   double Z0 = 0.0;
   double Z1 = 0.0;
   double phi0 = 0.;
   double phi1 = 0.;
   double x[3];
   double p, n, b[3];
-  
+
   for(int i=0; i<npts; i++) {
     x[0] = R0 + (R1-R0)*i/(npts-1);
     x[1] = phi0 + (phi1-phi0)*i/(npts-1);
     x[2] = Z0 + (Z1-Z0)*i/(npts-1);
-    
+
     std::cout << "(" << x[0] << ", " << x[1] << ", " << x[2] << "):\n";
 
     if(pressure) {
@@ -120,5 +123,3 @@ int main(int argc, char* argv[])
 
   return 0;
 }
-
-

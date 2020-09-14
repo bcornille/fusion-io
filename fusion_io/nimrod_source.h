@@ -6,15 +6,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void nimrod_fio_init(const char*, const int, int*);
-void nimrod_fio_dealloc(int*);
+int nimrod_fio_init(const char*);
+int nimrod_fio_dealloc();
 #ifdef __cplusplus
 }
 #endif
 
 struct nimrod_search_hint {
-  double ixy[2] = {0.0, 0.0};
-  int iblk = 1;
+  double ixy[2];
+  int iblk;
 };
 
 class nimrod_source : public fio_source {
@@ -26,7 +26,8 @@ public:
   int get_field_options(fio_option_list*) const;
   int get_field(const field_type, fio_field**, const fio_option_list*);
 
-  int sizeof_search_hint() const { return sizeof(nimrod_search_hint); }
+  int sizeof_search_hint() const
+  { return sizeof(nimrod_search_hint); }
   int allocate_search_hint(void** s);
   int deallocate_search_hint(void** s);
 };
