@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
   int result;
   fio_source* src;
-  fio_field *pressure, *density, *magnetic_field;
+  fio_field *pressure, *density, *magnetic_field, *electric_field;
   fio_option_list opt;
 
 
@@ -70,6 +70,12 @@ int main(int argc, char* argv[])
     magnetic_field = 0;
   };
 
+  result = src->get_field(FIO_ELECTRIC_FIELD, &electric_field, &opt);
+  if(result != FIO_SUCCESS) {
+    std::cerr << "Error opening electric_field field" << std::endl;
+    electric_field = 0;
+  };
+
   result = src->get_field(FIO_TOTAL_PRESSURE, &pressure, &opt);
   if(result != FIO_SUCCESS) {
     std::cerr << "Error opening pressure field" << std::endl;
@@ -112,6 +118,11 @@ int main(int argc, char* argv[])
 
     if(magnetic_field) {
       result = magnetic_field->eval(x, b);
+      std::cout << "\tB = (" << b[0] << ", " << b[1] << ", " << b[2] << "):\n";
+    }
+
+    if(electric_field) {
+      result = electric_field->eval(x, b);
       std::cout << "\tB = (" << b[0] << ", " << b[1] << ", " << b[2] << "):\n";
     }
   }

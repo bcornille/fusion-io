@@ -50,9 +50,9 @@ int nimrod_source::get_field(const field_type t, fio_field** f,
   // case FIO_MAGNETIC_FIELD:
   //   *f = new nimrod_magnetic_field();
   //   return FIO_SUCCESS;
-  // case FIO_ELECTRIC_FIELD:
-  //   *f = new nimrod_electric_field();
-  //   return FIO_SUCCESS;
+  case FIO_ELECTRIC_FIELD:
+    *f = new nimrod_electric_field();
+    return FIO_SUCCESS;
   default:
     return FIO_UNSUPPORTED;
   }

@@ -1,9 +1,9 @@
 CC = cc
 CXX = mpicxx
-CFLAGS = -Wall -fPIC -O2 -std=c++11
+CFLAGS = -Wall -fPIC -Og -g -std=c++11
 
 F90 = mpif90
-F90FLAGS = -Wall -fdefault-real-8 -fimplicit-none -fPIC
+F90FLAGS = -Wall -fdefault-real-8 -fimplicit-none -fPIC -g
 
 PYTHON = python3
 
@@ -15,7 +15,7 @@ LDFLAGS = -fPIC
 
 INCLUDE = -I/usr/include/hdf5/serial
 
-LIBS = -L/opt/local/lib/gcc5 -lgfortran
+LIBS = -L/usr/lib/gcc/x86_64-linux-gnu/5 -lgfortran
 
 HDF5_LIBS = -lhdf5_serial -lz
 LAPACK = -llapack
