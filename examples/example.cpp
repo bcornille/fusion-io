@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
   double phi0 = 0.;
   double phi1 = 0.;
   double x[3];
-  double p, n, b[3];
+  double p, n, b[3], e[3];
 
   for(int i=0; i<npts; i++) {
     x[0] = R0 + (R1-R0)*i/(npts-1);
@@ -122,8 +122,8 @@ int main(int argc, char* argv[])
     }
 
     if(electric_field) {
-      result = electric_field->eval(x, b);
-      std::cout << "\tB = (" << b[0] << ", " << b[1] << ", " << b[2] << "):\n";
+      result = electric_field->eval(x, e);
+      std::cout << "\tE = (" << e[0] << ", " << e[1] << ", " << e[2] << "):\n";
     }
   }
 

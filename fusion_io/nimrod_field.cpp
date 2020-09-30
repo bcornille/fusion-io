@@ -41,18 +41,18 @@ int nimrod_density_field::eval(const double* x, double* v, void* s)
 //   }
 //   return ierr;
 // }
-//
-// int nimrod_magnetic_field::eval(const double* x, double* v, void* s)
-// {
-//   int ierr = -1;
-//   if(s) {
-//     ierr = nimrod_fio_b_eval_hint(x, v, static_cast<nimrod_search_hint*>(s));
-//   } else {
-//     ierr = nimrod_fio_b_eval(x, v);
-//   }
-//   return ierr;
-// }
-//
+
+int nimrod_magnetic_field::eval(const double* x, double* v, void* s)
+{
+  int ierr = -1;
+  if(s) {
+    ierr = nimrod_fio_b_eval_hint(x, v, static_cast<nimrod_search_hint*>(s));
+  } else {
+    ierr = nimrod_fio_b_eval(x, v);
+  }
+  return ierr;
+}
+
 // int nimrod_magnetic_field::eval_deriv(const double* x, double* v, void* s)
 // {
 //   int ierr = -1;
