@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
   fio_source* src;
   fio_field *pressure, *density, *magnetic_field, *electric_field;
   fio_option_list opt;
-
+  fio_hint hint;
 
 
   if(argc < 2) {
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 
   } else if(source_type == "nimrod") {
     result = fio_open_source(&src, FIO_NIMROD_SOURCE, "data/nimrod/dump_gs.00000");
-
+    src->allocate_search_hint(&hint);
   } else {
     std::cerr << "Error: source type " << argv[1]
 	      << " not recognized" << std::endl;
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 
   int npts = 10;
   double R0 = 1.6;
-  double R1 = 1.9;
+  double R1 = 2.1;
   double Z0 = 0.0;
   double Z1 = 0.0;
   double phi0 = 0.;
@@ -112,21 +112,34 @@ int main(int argc, char* argv[])
     }
 
     if(density) {
-      result = density->eval(x, &n);
+      if(hint) {
+        result = density->eval(x, &n, hint);
+      } else {
+        result = density->eval(x, &n);
+      }
       std::cout << "\tdensity = " << n << "\n";
     }
 
     if(magnetic_field) {
-      result = magnetic_field->eval(x, b);
+        if(hint) {
+          result = magnetic_field->eval(x, b, hint);
+        } else {
+          result = magnetic_field->eval(x, b);
+        }
       std::cout << "\tB = (" << b[0] << ", " << b[1] << ", " << b[2] << "):\n";
     }
 
     if(electric_field) {
-      result = electric_field->eval(x, e);
+        if(hint) {
+          result = electric_field->eval(x, e, hint);
+        } else {
+          result = electric_field->eval(x, e);
+        }
       std::cout << "\tE = (" << e[0] << ", " << e[1] << ", " << e[2] << "):\n";
     }
   }
 
+  src->deallocate_search_hint(&hint);
   fio_close_field(&pressure);
   fio_close_field(&density);
   fio_close_field(&magnetic_field);
