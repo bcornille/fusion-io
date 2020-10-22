@@ -13,7 +13,7 @@ int nimrod_fio_dealloc();
 #endif
 
 struct nimrod_search_hint {
-  double ixy[2] = {0.0, 0.0};
+  double ixy[2] = {-1.0, -1.0};
   int iblk = 0;
 };
 
